@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./frontend
+    volumes:
+      - .:/crazy-8
+    ports:
+      - 3000:3000
+    image: crazy8:frontend
+    container_name: frontend_container
+    command: npm start
+  node-api:
+    container_name: backend_container
+    image: node:15.13-alpine
+    build:
+      context: ./backend
+    command: npm start
+    ports:
+      - 5000:5000
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ${PWD}:/home/node/project
