@@ -1,0 +1,25 @@
+.containers {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+.card {
+  width: 280px;
+  height: 500px;
+  display: block;
+  margin: 60px auto;
+  box-shadow: 10px 5px 40px 20px darken(#e7e7e7, 5%);
+  transition: 0.25s;
+
+  &:hover {
+    box-shadow: 10px 5px 40px 20px darken(#341cac, 10%);
+    cursor: pointer;
+
+    .button-primary {
+      transform: translate(10px, 0);
+    }
+  }
+}
