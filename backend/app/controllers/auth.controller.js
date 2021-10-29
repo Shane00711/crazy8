@@ -2,8 +2,6 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 
-const Op = db.Sequelize.Op;
-
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
@@ -16,9 +14,11 @@ exports.signup = (req, res) => {
   })
     .then(user => {
         console.log("User: ", user);
+        res.status(200).send({message: "User registered successfully"})
         return user.createPlayer({username: user.username})
     })
     .then(player => {
+        res.status(200).send({message: "Player created successfully"})
         console.log("Player: ", player);
     })
     .catch(err => {
@@ -51,6 +51,12 @@ exports.signin = (req, res) => {
 
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours
+      });
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        accessToken: token
       });
     })
     .catch(err => {
