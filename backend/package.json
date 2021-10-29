@@ -4,7 +4,7 @@
   "description": "Crazy 8 api backend",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sifiso Shane Mfeya",
