@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { useHistory } from 'react-router';
 import './landing.css';
 export const Landing = () => {
@@ -10,10 +11,10 @@ export const Landing = () => {
                 <h2>The game were the winner takes all.</h2>
             </div>
             <div className="col">
-                <button className="login_btn" onClick={()=>history.push('/login')}>Login (Already known)</button>
+                <Button variant="contained" className="login_btn" onClick={()=>history.push('/login')}>Login (Already known)</Button>
             </div>
-             <div className="col">
-                <button className="reg_btn" onClick={()=>history.push('/reg')}>Register (New Player)</button>
+             <div className="col m5">
+                <Button variant="contained" className="reg_btn" onClick={()=>history.push('/reg')}>Register (New Player)</Button>
             </div>
         </div>
     )

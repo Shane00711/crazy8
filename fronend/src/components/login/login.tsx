@@ -4,6 +4,7 @@ import './login.scss';
 import logo from './../../logo.svg';
 import image  from "./../../cards.jpg"
 import axios from 'axios';
+import { Popup } from '../popup/popup';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -42,24 +43,17 @@ const Login = () => {
         sign_in();
     }
     const sign_in = () => {
-        const _body = {
-                "username" : "testuser",
-                "password": "123456"
-            };
-        console.log(_body);
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/auth/signin',
             data: {
-                 username : "testuser",
-                password: "123456"
+                 username : username,
+                password: password
             }
-        // })
-        // ;
-        // fetch("http://localhost:8080/api/auth/signin", {
-        //     "method": "POST",
-        //     "body": _body
         }).then(res => {
+            if(res.status === 200) {
+                <Popup />
+            }
             console.log(res);
         }).catch(err => {
             console.error(err);

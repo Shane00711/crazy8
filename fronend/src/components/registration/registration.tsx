@@ -1,11 +1,16 @@
 import { Card, CardMedia, CardContent, Button, styled, TextField, Link } from "@mui/material"
+import axios from "axios";
 import { useState } from "react";
+import { Popup } from "../popup/popup";
 import image  from "./../../cards.jpg"
 import "./registration.scss";
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: 'red',
+  },
+  '& label': {
+    color: '#ff000099',
   },
   '& .MuiInput-underline:after': {
     borderBottomColor: 'green',
@@ -21,22 +26,54 @@ const CssTextField = styled(TextField)({
       borderColor: 'red',
       color: 'red'
     },
+    '& input': {
+      color: 'red'
+    },
+    '&.Mui-focused input': {
+      color: 'red'
+    },
   },
+  'input': {
+    '&::placeholder': {
+      textOverflow: 'ellipsis !important',
+      color: 'blue'
+    }
+  }
 });
 export const Registration = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+  
 
     function handleSubmit(val: any) {
         val.preventDefault();
-        // console.log(password, " ", username);
-        // sign_in();
+        register();
     }
+    
+    const register = () => {
+        axios({
+        method: 'post',
+        url: 'http://localhost:8080/api/auth/signup',
+        data: {
+          username : username,
+          password: password,
+          email: email
+        }
+        }).then(res => {
+          if(res.status === 200) {
+            <Popup />
+          }
+          console.log(res);
+        }).catch(err => {
+          console.error(err);
+        })
+    }
+
     return (
         <div className="reg_containers">
             <h1>Register</h1>
-            <Card className="card" variant="outlined">
+            <Card className="card_reg" variant="outlined">
                 <CardMedia
                     component="img"
                     height="140"
