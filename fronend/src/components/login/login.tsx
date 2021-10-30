@@ -1,11 +1,9 @@
 import { Button, Card, CardContent, CardMedia, TextField, styled, Link } from '@mui/material';
 import { useState } from 'react';
 import './login.scss';
-import logo from './../../logo.svg';
 import image  from "./../../cards.jpg"
-import axios from 'axios';
-import { Popup } from '../popup/popup';
 import { UserService } from '../../serivces/userService';
+import { useHistory } from 'react-router';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -28,6 +26,7 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = () => {
+    const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     function handleChange(val: any) {
@@ -47,6 +46,7 @@ const Login = () => {
             res => {
                 if(res.status === 200) {
                     console.log(res);
+                     history.push("/start");
                 }
             }
         ).catch(() =>{})

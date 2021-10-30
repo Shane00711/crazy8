@@ -1,8 +1,6 @@
 import { Card, CardMedia, CardContent, Button, styled, TextField, Link } from "@mui/material"
-import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { UserService } from "../../serivces/userService";
-import { Popup } from "../popup/popup";
 import image  from "./../../cards.jpg"
 import "./registration.scss";
 
@@ -45,7 +43,7 @@ export const Registration = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [userRegisterResponse, setUserRegisterResponse] = useState<AxiosResponse>();
+    // const [userRegisterResponse, setUserRegisterResponse] = useState<AxiosResponse>();
   
     function handleSubmit(val: any) {
         val.preventDefault();
