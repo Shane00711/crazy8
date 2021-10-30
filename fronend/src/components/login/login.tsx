@@ -5,6 +5,7 @@ import logo from './../../logo.svg';
 import image  from "./../../cards.jpg"
 import axios from 'axios';
 import { Popup } from '../popup/popup';
+import { UserService } from '../../serivces/userService';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -39,25 +40,16 @@ const Login = () => {
     }
     function handleSubmit(val: any) {
         val.preventDefault();
-        // console.log(password, " ", username);
         sign_in();
     }
     const sign_in = () => {
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/api/auth/signin',
-            data: {
-                 username : username,
-                password: password
+        UserService.signin({username, password}).then(
+            res => {
+                if(res.status === 200) {
+                    console.log(res);
+                }
             }
-        }).then(res => {
-            if(res.status === 200) {
-                <Popup />
-            }
-            console.log(res);
-        }).catch(err => {
-            console.error(err);
-        })
+        ).catch(() =>{})
     }
     return (
         <div className="containers">

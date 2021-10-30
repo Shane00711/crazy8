@@ -1,6 +1,7 @@
 import { Card, CardMedia, CardContent, Button, styled, TextField, Link } from "@mui/material"
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
+import { UserService } from "../../serivces/userService";
 import { Popup } from "../popup/popup";
 import image  from "./../../cards.jpg"
 import "./registration.scss";
@@ -44,30 +45,19 @@ export const Registration = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [userRegisterResponse, setUserRegisterResponse] = useState<AxiosResponse>();
   
-
     function handleSubmit(val: any) {
         val.preventDefault();
         register();
     }
     
     const register = () => {
-        axios({
-        method: 'post',
-        url: 'http://localhost:8080/api/auth/signup',
-        data: {
-          username : username,
-          password: password,
-          email: email
-        }
-        }).then(res => {
-          if(res.status === 200) {
-            <Popup />
-          }
+      UserService.signup({username, password, email})
+      .then(res =>{
           console.log(res);
-        }).catch(err => {
-          console.error(err);
-        })
+      }).catch(() =>{
+      });
     }
 
     return (
