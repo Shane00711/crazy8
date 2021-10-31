@@ -26,6 +26,8 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.player = require("../models/player.model.js")(sequelize, Sequelize);
+db.game = require("../models/game.model")(sequelize, Sequelize);
+db.gameplayerscore = require("../models/gameplayerscore.model")(sequelize, Sequelize);
 db.user.hasOne(db.player);
 db.player.belongsTo(db.user, {
     foreignKey: {

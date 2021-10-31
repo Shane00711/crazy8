@@ -1,16 +1,3 @@
-.launchContainer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  z-index: 1;
-  min-height: 100vh;
-  background: #9b0606;
-  background-image: url('./../../spades.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
 .glasscard {
   position: relative;
   height: 400px;
@@ -27,15 +14,14 @@
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
 }
-.launchContainer .glasscard .glasscontent {
+.glasscard .glasscontent {
   padding: 20px;
   text-align: center;
   // transform: translateY(100px);
   // opacity: 0;
   transition: 0.5s;
 }
-
-.launchContainer .glasscard .glasscontent .iconclass {
+.glasscard .glasscontent .iconclass {
   position: absolute;
   height: 150px;
   opacity: 0.5;
@@ -46,20 +32,19 @@
   pointer-events: none;
 }
 
-.launchContainer .glasscard .glasscontent h3 {
+.glasscard .glasscontent h3 {
   font-size: 1.8em;
   color: #fff;
   z-index: 1;
   pointer-events: none;
 }
-
-.launchContainer .glasscard .glasscontent p {
+.glasscard .glasscontent p {
   font-size: 1em;
   color: #fff;
   font-weight: 300;
 }
 
-.launchContainer .glasscard .glasscontent a {
+.glasscard .glasscontent a {
   position: relative;
   display: inline-block;
   padding: 8px 20px;

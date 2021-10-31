@@ -1,11 +1,15 @@
 .containers {
-  height: inherit;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  flex-direction: column;
-  background-color: #000;
+  flex-wrap: wrap;
+  z-index: 1;
+  min-height: 100vh;
+  background: #9b0606;
+  background-image: url('./../../heart.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .card {
   width: 280px;
