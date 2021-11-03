@@ -1,18 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
-    const GamePlayerScore = sequelize.define("gameplayerscore", {
+    const InGamePlayerStatus = sequelize.define("gameplayerstatus", {
         id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             allowNull: false,
             primaryKey: true
         },
-        order: {
-            type: Sequelize.INTEGER
-        },
-        cardcount: {
-            type: Sequelize.INTEGER
+        status: {
+            type: Sequelize.BOOLEAN
         }
     });
-
-    return GamePlayerScore;
+    return InGamePlayerStatus;
 }

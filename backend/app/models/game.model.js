@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         playercount: {
-            type: Sequelize.Integer
+            type: Sequelize.INTEGER
         },
         status: {
             type: Sequelize.STRING,
