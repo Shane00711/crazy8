@@ -74,7 +74,7 @@ export const StartNewGame = () => {
                     <form onSubmit={createNameGame}>
                         <div>
                             <CssTextField id="custom-css-outlined-input"  label="Game Name" variant="outlined" value={gameName} onChange={(e) =>setGameName(e.target.value)}/>
-                            <CssTextField id="custom-css-outlined-input"  label="Player Namw" variant="outlined" value={gameName} onChange={(e) =>setGameName(e.target.value)}/>
+                            <CssTextField id="custom-css-outlined-input"  label="Player Name" variant="outlined" value={gameName} onChange={(e) =>setGameName(e.target.value)}/>
                             <Autocomplete
                                 multiple
                                 id="tags-outlined"

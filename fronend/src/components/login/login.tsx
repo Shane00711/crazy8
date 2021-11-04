@@ -82,7 +82,7 @@ const Login = () => {
                     <CssTextField id="custom-css-outlined-input" label="Username" variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
                 </div>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input" label="Password" variant="outlined" value={password} onChange={(e) =>handlePasswordChange(e)}/>
+                    <CssTextField id="custom-css-outlined-input" label="Password" variant="outlined" type="password" value={password} onChange={(e) =>handlePasswordChange(e)}/>
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button variant="contained" type="submit" value="Submit" style={{backgroundColor: "black"}}>Login</Button>

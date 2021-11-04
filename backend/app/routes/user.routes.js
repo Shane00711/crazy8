@@ -9,12 +9,7 @@ module.exports = function(app) {
     );
     next();
   });
-
-  app.get("/api/test/all", controller.allAccess);
-
-  app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
-    controller.userBoard
-  );
+   //route to get one user
+  app.get("/api/user/findOne", [authJwt.verifyToken], controller.findOne);
+  app.get("/api/user/findAll", [authJwt.verifyToken], controller.findAll);
 };

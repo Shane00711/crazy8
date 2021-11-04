@@ -8,6 +8,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     username: {
       type: Sequelize.STRING
+    },
+    ingamestatus: {
+      type: Sequelize.STRING,
+      defaultValue: "offline"
     }
   });
 

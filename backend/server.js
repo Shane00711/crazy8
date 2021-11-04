@@ -24,9 +24,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-db.sequelize.sync({force: true}).then(()=>{
-  console.log('Drop and Restore Db');
-});
+// db.sequelize.sync({force: true}).then(()=>{
+//   console.log('Drop and Restore Db');
+// });
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
