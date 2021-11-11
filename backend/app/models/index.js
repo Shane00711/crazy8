@@ -38,9 +38,7 @@ db.player.belongsTo(db.user, {
         type: Sequelize.UUID
     }
 });
-// db.card.hasOne(db.playercards);
-// db.player.hasOne(db.gameplayerscore);
-// db.game.hasOne(db.gameplayerscore);
+
 db.player.belongsToMany(db.game, { through: db.gameplayerscore});
 db.card.belongsToMany(db.playercards, {through: db.cardinhand});
 // db.game.belongsToMany(db.player, { through: db.gameplayerscore});
