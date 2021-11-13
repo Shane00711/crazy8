@@ -30,3 +30,21 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+exports.search = (req, res) => {
+  User.findAll({
+    where: {
+      username: {
+        [db.Sequelize.Op.like]: `%${req.query.q}%`
+      }
+    }
+  })
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving users."
+      });
+    });
+};

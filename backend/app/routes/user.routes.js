@@ -12,4 +12,5 @@ module.exports = function(app) {
    //route to get one user
   app.get("/api/user/findOne", [authJwt.verifyToken], controller.findOne);
   app.get("/api/user/findAll", [authJwt.verifyToken], controller.findAll);
+  app.get("/api/user/search", [authJwt.verifyToken], controller.search);
 };

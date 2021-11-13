@@ -18,7 +18,6 @@ exports.signup = (req, res) => {
         return user.createPlayer({username: user.username})
     })
     .then(player => {
-        res.status(200).send({message: "Player created successfully"})
         console.log("Player: ", player);
     })
     .catch(err => {
