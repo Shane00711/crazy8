@@ -79,10 +79,10 @@ const Login = () => {
         <div className="containers">
            <GlassCard options={options} image={<img src={club} className="iconclass" alt="heart" />} header={<h1>Login</h1>} para={ <form onSubmit={handleSubmit}>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input" label="Username" variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
+                    <CssTextField id="custom-css-outlined-input 1" label="Username" variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
                 </div>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input" label="Password" variant="outlined" type="password" value={password} onChange={(e) =>handlePasswordChange(e)}/>
+                    <CssTextField id="custom-css-outlined-input 2" label="Password" variant="outlined" type="password" value={password} onChange={(e) =>handlePasswordChange(e)}/>
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button variant="contained" type="submit" value="Submit" style={{backgroundColor: "black"}}>Login</Button>

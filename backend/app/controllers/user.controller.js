@@ -1,6 +1,6 @@
 const db = require("../models");
 const User = db.user;
-
+const PlayerService = require('../services/player.service');
 //find one user
 exports.findOne = (req, res) => { 
   User.findOne({
@@ -32,19 +32,33 @@ exports.findAll = (req, res) => {
 };
 
 exports.search = (req, res) => {
-  User.findAll({
-    where: {
-      username: {
-        [db.Sequelize.Op.like]: `%${req.query.q}%`
-      }
-    }
-  })
-    .then(users => {
-      res.json(users);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving users."
-      });
+  //validate request
+  if (!req.body.username) {
+    res.status(400).send({
+      message: "Username cannot be empty!"
     });
+    return;
+  }
+  try {
+    PlayerService.searchPlayerByUsername(req, res);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error.message }); 
+  }
 };
+
+exports.checkplayerstatus = (req, res) => {
+  //validate request
+  if (!req.body.username) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+  try {
+    PlayerService.checkPlayerGameStatus(req, res);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error.message }); 
+  }
+}

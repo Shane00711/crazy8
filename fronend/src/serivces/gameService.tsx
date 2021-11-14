@@ -38,5 +38,19 @@ export const GameService = {
         return response.then(res => {
             return res;
         })
+    },
+
+    checkGameName(testname: string): Promise<any> {
+        const response = axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/game/checkname',
+            params: {name: testname}
+        }).catch(err => {
+            console.error(err);
+            return err;
+        });
+        return response.then(res => {
+            return res;
+        });
     }
 }

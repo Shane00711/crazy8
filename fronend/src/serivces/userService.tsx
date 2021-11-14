@@ -35,6 +35,7 @@ export const UserService = {
         })
         return response.then(res => {
             console.log(res);
+            axios.defaults.headers.common['x-access-token'] = res?.data.accessToken;
             return res;
         });
     }

@@ -95,5 +95,15 @@ module.exports = {
         .catch(err => {
             res.status(500).send(err);
         });
+    },
+
+    async checkGameName(name) {
+        let game;
+        try {
+            game = Game.findOne({where: { game: name}});
+        } catch (err) {
+            return err;
+        };
+        return game;
     }
-}
+};

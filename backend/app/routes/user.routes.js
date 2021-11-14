@@ -13,4 +13,5 @@ module.exports = function(app) {
   app.get("/api/user/findOne", [authJwt.verifyToken], controller.findOne);
   app.get("/api/user/findAll", [authJwt.verifyToken], controller.findAll);
   app.get("/api/user/search", [authJwt.verifyToken], controller.search);
+  app.get("/api/user/checkplayerstatus", [authJwt.verifyToken], controller.checkplayerstatus);
 };

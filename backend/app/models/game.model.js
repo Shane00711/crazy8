@@ -7,7 +7,9 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         game: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true
         },
         playercount: {
             type: Sequelize.INTEGER

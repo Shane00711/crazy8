@@ -10,9 +10,6 @@ module.exports = function(app) {
         next();
     });
 
-    app.post(
-        "/api/game/create",
-        [authJwt.verifyToken],
-        controller.creategame
-    );
+    app.post("/api/game/create", [authJwt.verifyToken], controller.creategame);
+    app.get("/api/game/checkname", [authJwt.verifyToken], controller.checkname);
 }

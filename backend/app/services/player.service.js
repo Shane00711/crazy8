@@ -21,12 +21,28 @@ module.exports = {
 
     //search for player by username
     searchPlayerByUsername: (req, res) => {
+        Player.findAll({
+            where: {
+                [db.Sequelize.Op.like]: `%${req.body.username}%`
+            }
+        }).then(player => {
+            res.send(player);
+        }).catch(err => {
+            res.send(err);
+        });
+    },
+    //check player game status
+    checkPlayerGameStatus: (req, res) => {
         Player.findOne({
             where: {
                 username: req.params.username
             }
         }).then(player => {
-            res.send(player);
+            if(player.ingamestatus === "offline"){
+                res.send(true);
+            } else {
+                res.send(false);
+            }
         }).catch(err => {
             res.send(err);
         });
