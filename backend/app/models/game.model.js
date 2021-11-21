@@ -19,7 +19,8 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: "Private"
         },
         winner: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            defaultValue: "None"
         }
     });
 

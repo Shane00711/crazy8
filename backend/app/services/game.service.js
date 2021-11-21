@@ -52,12 +52,12 @@ module.exports = {
     createGame: (req, res) => {
         Game.create({
             game: req.body.name,
-            playercount: req.body.playercount,
-            status: req.body.status,
-            winner: req.body.winner,
+            playercount: req.body.players.length,
+            status: req.body.status,           
         })
         .then(data => {
-            return res.status(200).send(data);
+            return data;
+            // return res.status(200).send(data);
         })
         .catch(err => {
             return res.status(500).send(err);
