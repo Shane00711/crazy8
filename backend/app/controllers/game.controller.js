@@ -26,7 +26,6 @@ exports.checkname = async function(req, res) {
     }
     try {
         let gamename = await GameService.checkGameName(req.query.name);
-        console.log("gamename", gamename);
         if(gamename) {
             res.status(200).send({ message: "Game name already exists" });
         } else {

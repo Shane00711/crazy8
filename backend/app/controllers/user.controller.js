@@ -31,18 +31,22 @@ exports.findAll = (req, res) => {
     });
 };
 
-exports.search = (req, res) => {
+exports.search = async function(req, res) {
   //validate request
-  if (!req.body.username) {
+  if (!req.query.username) {
     res.status(400).send({
       message: "Username cannot be empty!"
     });
     return;
   }
   try {
-    PlayerService.searchPlayerByUsername(req, res);
+    let player = await PlayerService.searchPlayerByUsername(req, res);
+    if(player) {
+      res.status(200).send(player);
+    } else {
+      res.status(404).send({ message: "Player not found" });
+    }
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: error.message }); 
   }
 };

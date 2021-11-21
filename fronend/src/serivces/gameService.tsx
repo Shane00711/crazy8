@@ -1,17 +1,16 @@
 import axios from "axios"
 
 export const GameService = {
-    createNewGame(): Promise<any> {
+    
+    createNewGame(gamename: string, playerIds: any): Promise<any> {
+        console.log("createNewGame", gamename, playerIds)
         const response = axios({
             method: 'post',
             url: 'htpp://localhost:8080/api/game/create',
             data: {
-                gamename: 'TestGame',
+                gamename: gamename,
                 type: 'private',
-                player: [
-                    'testuser',
-                    'testuser2'
-                ]
+                player: playerIds
             }
         }).catch(err => {
             console.error(err);
@@ -46,9 +45,9 @@ export const GameService = {
             url: 'http://localhost:8080/api/game/checkname',
             params: {name: testname}
         }).catch(err => {
-            console.error(err);
-            return err;
+            return err.response;
         });
+
         return response.then(res => {
             return res;
         });

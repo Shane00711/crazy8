@@ -62,7 +62,3 @@ function Tilt(props: any) {
         </div>
     );
 }
-
-function createGame() {
-    
-}

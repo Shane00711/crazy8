@@ -1,3 +1,56 @@
+:root {
+  --red: 29;
+  --green: 27;
+  --blue: 30;
+
+  --threshold: 0.5;
+}
+
+.contrast {
+  --r: calc(var(--red) * 0.2126);
+  --g: calc(var(--green) * 0.7152);
+  --b: calc(var(--blue) * 0.0722);
+  --sum: calc(var(--r) + var(--g) + var(--b));
+  --perceived-lightness: calc(var(--sum) / 255);
+
+  /* shows either white or black color depending on perceived darkness */
+  color: hsl(
+    0,
+    0%,
+    calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)
+  ) !important;
+}
+.header3 {
+  --r: calc(var(--red) * 0.2126);
+  --g: calc(var(--green) * 0.7152);
+  --b: calc(var(--blue) * 0.0722);
+  --sum: calc(var(--r) + var(--g) + var(--b));
+  --perceived-lightness: calc(var(--sum) / 255);
+
+  /* shows either white or black color depending on perceived darkness */
+  color: hsl(
+    0,
+    0%,
+    calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)
+  );
+}
+.btn {
+  /* (...) */
+  /* applies a darker border if the lightness is higher than the border threshold */
+  --border-alpha: calc(
+    (var(--perceived-lightness) - var(--border-threshold)) * 100
+  );
+
+  border-width: 0.2em;
+  border-style: solid;
+  border-color: rgba(
+    calc(var(--red) - 50),
+    calc(var(--green) - 50),
+    calc(var(--blue) - 50),
+    var(--border-alpha)
+  );
+}
+
 .App {
   text-align: center;
 }
