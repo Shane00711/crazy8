@@ -1,3 +1,4 @@
+const gameService = require("../services/game.service");
 const GameService = require("../services/game.service");  
 const GamePlayerScore = require("../services/gameplayerscore.service")
 const PlayerService = require("../services/player.service");
@@ -6,17 +7,13 @@ exports.creategame = function(req, res) {
         res.status(400).send({ message: "Please select at least 1 other player" });
         return;
     }
-    if(!req.body.gamename) {
+    if(!req.body.name) {
         res.status(400).send({ message: "Please specify a Game Name" });
         return;
     }
+    console.log("creategame", req.body);
     try {
-        var newgame = GameService.createGame(req, res);
-        console.log("Game Created: ", newgame);
-        if(newgame) {
-            req.body.newgame = newgame;
-            var newgameplayerscore = GamePlayerScore.createGamePlayerScore(req, res);    
-        }
+        GameService.createGame(req, res);
     } catch (err) { 
         res.status(500).send({ message: err.message }); 
     }
@@ -38,4 +35,24 @@ exports.checkname = async function(req, res) {
     } catch (err) { 
         res.status(500).send({ message: err.message }); 
     }
+}
+
+exports.getallgames = async function(req, res) {
+    try{
+        gameService.getAllGames(req, res);
+    } catch(err) {
+        res.status(500).send(err);
+    };
+}
+
+exports.getgamebyid = async function(req, res) {
+    if(!req.query.id) {
+        res.status(400).send({ message: "Please specify a Game ID" });
+        return;
+    }   
+    try{
+        gameService.getGameById(req, res);
+    } catch(err) {
+        res.status(500).send(err);
+    };
 }

@@ -14,11 +14,14 @@ exports.signup = (req, res) => {
   })
     .then(user => {
         console.log("User: ", user);
-        res.status(200).send({message: "User registered successfully"})
-        return user.createPlayer({username: user.username})
-    })
-    .then(player => {
-        console.log("Player: ", player);
+        user.createPlayer({user}).then(player => {
+            console.log("Player: ", player);
+            res.status(201).send({
+                message: "User created successfully!"
+            });
+        }).catch(err => {
+            res.status(500).send({message: err.message});
+        });
     })
     .catch(err => {
       res.status(500).send({ message: err.message });

@@ -6,13 +6,20 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        order: {
-            type: Sequelize.INTEGER
+        playerId: {
+            type: Sequelize.UUID,
+            allowNull: false
         },
-        cardcount: {
-            type: Sequelize.INTEGER
-        }
-    });
+        gameId: {
+            type: Sequelize.UUID,
+            allowNull: false
+        },
+    }, {});
+    GamePlayerScore.associate = function(models) {
+        // associations can be defined here
+        GamePlayerScore.belongsTo(models.player, {foreignKey: "playerId"});
+        GamePlayerScore.belongsTo(models.game, {foreignKey: "gameId"});
+    };
 
     return GamePlayerScore;
 }

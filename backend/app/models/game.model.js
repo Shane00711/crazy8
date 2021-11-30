@@ -22,7 +22,11 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             defaultValue: "None"
         }
-    });
+    }, {});
 
+    Game.associate = function(models) {
+        // associations can be defined here
+        Game.belongsToMany(models.player, {through: "gameplayerscore"}, {foreignKey: "gameId"});
+    }
     return Game;
 };
