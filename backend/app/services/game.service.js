@@ -10,10 +10,6 @@ module.exports = {
             include: [
                 {
                     model: Player,
-                    as: 'players',
-                    through: {
-                        attributes: ['score']
-                    }
                 }
             ]
         })
