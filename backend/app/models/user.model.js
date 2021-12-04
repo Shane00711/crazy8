@@ -15,7 +15,9 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING
     }
-  });
-
+  }, {});
+  User.associate = function(models) { 
+    User.hasOne(models.player, {foreignKey: "userId"});   
+  };
   return User;
 };

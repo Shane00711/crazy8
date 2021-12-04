@@ -9,8 +9,8 @@ export const GameService = {
             url: 'htpp://localhost:8080/api/game/create',
             data: {
                 gamename: gamename,
-                type: 'private',
-                player: playerIds
+                status: 'private',
+                players: playerIds
             }
         }).catch(err => {
             console.error(err);

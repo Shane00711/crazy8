@@ -19,9 +19,14 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: "Private"
         },
         winner: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            defaultValue: "None"
         }
-    });
+    }, {});
 
+    Game.associate = function(models) {
+        // associations can be defined here
+        Game.belongsToMany(models.player, {through: "gameplayerscore"}, {foreignKey: "gameId"});
+    }
     return Game;
 };
