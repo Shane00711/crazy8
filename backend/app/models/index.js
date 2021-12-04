@@ -32,17 +32,25 @@ db.ingameplayerstatus = require("../models/ingameplayerstatus.model")(sequelize,
 db.card = require("../models/cards.model")(sequelize, Sequelize);
 db.cardinhand = require("../models/cardinhand.model")(sequelize, Sequelize);
 db.playercards = require("../models/playercards.model")(sequelize,Sequelize);
-db.user.hasOne(db.player);
-db.player.belongsTo(db.user, {
-    foreignKey: {
-        type: Sequelize.UUID
-    }
-});
+// db.user.hasOne(db.player);
+// db.player.belongsTo(db.user, {
+//     foreignKey: {
+//         type: Sequelize.UUID
+//     }
+// });
 
-db.player.belongsToMany(db.game, { through: db.gameplayerscore});
-db.card.belongsToMany(db.playercards, {through: db.cardinhand});
+// db.player.belongsToMany(db.game, { through: db.gameplayerscore});
+// db.card.belongsToMany(db.playercards, {through: db.cardinhand});
 // db.game.belongsToMany(db.player, { through: db.gameplayerscore});
 // db.ingameplayerstatus.hasOne(db.gameplayerscore);
 // db.playercards.hasMany(db.card);
-db.gameplayerscore.hasOne(db.playercards);
+// db.gameplayerscore.hasOne(db.playercards);
+db.player.belongsTo(db.user, {foreignKey: "userId"});
+db.user.hasOne(db.player, {foreignKey: "userId"});  
+db.player.belongsToMany(db.game, {through: "gameplayerscore"}, {foreignKey: "playerId"});
+db.game.belongsToMany(db.player, {through: "gameplayerscore"}, {foreignKey: "gameId"});
+db.gameplayerscore.belongsTo(db.player, {foreignKey: "playerId"});
+db.gameplayerscore.belongsTo(db.game, {foreignKey: "gameId"});
+
+
 module.exports = db;

@@ -12,4 +12,6 @@ module.exports = function(app) {
 
     app.post("/api/game/create", [authJwt.verifyToken], controller.creategame);
     app.get("/api/game/checkname", [authJwt.verifyToken], controller.checkname);
+    app.get("/api/game/getallgames", [authJwt.verifyToken], controller.getallgames);
+    app.get("/api/game/findgame", [authJwt.verifyToken], controller.getgamebyid);
 }

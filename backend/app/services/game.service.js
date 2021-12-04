@@ -1,6 +1,7 @@
 const db = require("../models");
 const Game = db.game;
 const Player = db.player;
+const GamePlayerScore = db.gameplayerscore;
 
 module.exports = {
     // Get all games
@@ -9,10 +10,6 @@ module.exports = {
             include: [
                 {
                     model: Player,
-                    as: 'players',
-                    through: {
-                        attributes: ['score']
-                    }
                 }
             ]
         })
@@ -28,15 +25,11 @@ module.exports = {
     getGameById: (req, res) => {
         Game.findOne({
             where: {
-                id: req.params.id
+                id: req.query.id
             },
             include: [
                 {
                     model: Player,
-                    as: 'players',
-                    through: {
-                        attributes: ['score']
-                    }
                 }
             ]
         })
@@ -52,15 +45,31 @@ module.exports = {
     createGame: (req, res) => {
         Game.create({
             game: req.body.name,
-            playercount: req.body.playercount,
-            status: req.body.status,
-            winner: req.body.winner,
+            playercount: req.body.players.length,
+            status: req.body.status,         
         })
-        .then(data => {
-            return res.status(200).send(data);
-        })
-        .catch(err => {
-            return res.status(500).send(err);
+        .then(newgame => {
+            Player.findAll({ where: { id: req.body.players }})
+            .then(players => {
+                if(players.length > 0) {
+                    players.forEach(player => {
+                        player.addGame(newgame)
+                        .then((newgamescore) => {
+                            console.log("Game Added ", newgamescore);
+                        }).catch(err => {
+                            res.status(500).send(err);
+                        });
+                    });
+                    res.status(200).send({ message: "Game created successfully" });
+                } else {
+                    res.status(400).send({ message: "No players found" });  
+                }
+            })
+            .catch(err => {
+                res.status(500).send(err);
+            });
+        }).catch(err => {   
+            res.status(500).send(err);
         });
     },
 
