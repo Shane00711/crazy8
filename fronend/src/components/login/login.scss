@@ -1,0 +1,37 @@
+.containers {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 1;
+  min-height: 100vh;
+  background: #9b0606;
+  background-image: url('./../../heart.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.card {
+  width: 280px;
+  height: 350px;
+  display: block;
+  margin: 60px auto;
+  // box-shadow: 10px 5px 40px 20px darken(#e7e7e7, 5%);
+  transition: 0.25s;
+  background-color: red !important;
+
+  &:hover {
+    box-shadow: 10px 5px 40px 20px darken(red, 10%);
+    cursor: pointer;
+
+    .button-primary {
+      transform: translate(10px, 0);
+    }
+  }
+}
+.txt {
+  margin: 7px;
+}
+h1 {
+  color: #fff;
+}
