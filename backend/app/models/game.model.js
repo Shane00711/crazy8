@@ -27,6 +27,7 @@ module.exports = (sequelize, Sequelize) => {
     Game.associate = function(models) {
         // associations can be defined here
         Game.belongsToMany(models.player, {through: "gameplayerscore"}, {foreignKey: "gameId"});
+        Game.belongsToMany(models.card, {through: "gamecard"}, {foreignKey: "gameId"});
     }
     return Game;
 };

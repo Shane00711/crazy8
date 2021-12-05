@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         primaryKey: true 
        },
-       suits: {
+       suit: {
            type: Sequelize.STRING
        },
        color: {
@@ -16,6 +16,8 @@ module.exports = (sequelize, Sequelize) => {
            type: Sequelize.STRING
        }
     });
-
+    Card.associate = function(models) {
+        Card.belongsToMany(models.game, {through: "gamecard"}, {foreignKey: "cardId"});
+    }
     return Card;
 }

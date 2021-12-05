@@ -14,4 +14,5 @@ module.exports = function(app) {
     app.get("/api/game/checkname", [authJwt.verifyToken], controller.checkname);
     app.get("/api/game/getallgames", [authJwt.verifyToken], controller.getallgames);
     app.get("/api/game/findgame", [authJwt.verifyToken], controller.getgamebyid);
+    app.get("/api/game/generatecards", [authJwt.verifyToken], controller.generatecards);
 }

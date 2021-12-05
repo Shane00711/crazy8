@@ -56,3 +56,15 @@ exports.getgamebyid = async function(req, res) {
         res.status(500).send(err);
     };
 }
+
+exports.generatecards = function(req, res) {
+    if(!req.query.id) {
+        res.status(400).send({ message: "Please specify a Game ID" });
+        return;
+    }
+    try {
+        gameService.generatecards(req, res);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}

@@ -114,5 +114,10 @@ module.exports = {
             return err;
         };
         return game;
+    },
+
+    //generatet a new collection of card of the new game
+    generatecards: (req, res) => {
+        return res.status(200).send("still working on this");
     }
 };

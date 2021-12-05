@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const db = require("./app/models");
-const User = db.user;
+const Card  = db.cards;
+const cards = require("./app/config/cards.json");
 
 const app = express();
 
@@ -24,9 +25,14 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-// db.sequelize.sync({force: true}).then(()=>{
-//   console.log('Drop and Restore Db');
-// });
+db.sequelize.sync({force: true}).then(()=>{
+  console.log('Drop and Restore Db');
+  Card.bulkCreate(cards).then(()=>{
+    return Card.findAll();
+  }).then(cards => {
+    console.log("Card Deck: ",cards)
+  });
+});
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
