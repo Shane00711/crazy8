@@ -1,6 +1,7 @@
 const db = require("../models");
 const { Op } = require("sequelize");
 const Player = db.player;
+const User = db.user;
 module.exports = {
     //get all players
     getAllPlayers: (req, res) => {  
@@ -25,12 +26,17 @@ module.exports = {
         let player;
         try {
             player = await 
-                Player.findAll({
+                User.findAll({
                     where: {
                         username: {
                             [Op.like]: `%${req.query.username}%`
                         }
-                    }
+                    },
+                    include: [
+                        {
+                            model: Player,
+                        }
+            ]
                 })
         } catch (error) {
             return error;

@@ -16,8 +16,8 @@ module.exports = (sequelize, Sequelize) => {
            type: Sequelize.STRING
        }
     });
-    Card.associate = function(models) {
-        Card.belongsToMany(models.game, {through: "gamecard"}, {foreignKey: "cardId"});
-    }
+    // Card.associate = function(models) {
+    //     Card.belongsToMany(models.game, {through: "gamecard"}, {foreignKey: "cardId"});
+    // }
     return Card;
 }

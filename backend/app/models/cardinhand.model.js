@@ -8,16 +8,16 @@ module.exports = (sequelize, Sequelize) => {
         },
         playercardId: {
             type: Sequelize.UUID,
-            allowNull: false
+            allowNull: true
         },
         gamecardId: {
             type: Sequelize.UUID,
-            allowNull: false
+            allowNull: true
         }
     });
-    CardInHand.associate = function(model) {
-        CardInHand.belongsTo(model.playercards, {foreignKey: "playercardId"});
-        CardInHand.belongsTo(model.gamecards, {foreignKey: "gamecardId"});
-    }
+    // CardInHand.associate = function(model) {
+    //     CardInHand.belongsTo(model.playercards, {foreignKey: "playercardId"});
+    //     CardInHand.belongsTo(model.gamecards, {foreignKey: "gamecardId"});
+    // }
     return CardInHand;
 }

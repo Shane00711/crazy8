@@ -107,6 +107,7 @@ export const StartNewGame = () => {
                             <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
                               <InputLabel htmlFor="outlined-adornment-password">Game Name</InputLabel>
                               <OutlinedInput
+                                autoFocus={true}
                                 id="custom-css-outlined-input"
                                 type='text'
                                 color="secondary"

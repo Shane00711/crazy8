@@ -60,10 +60,13 @@ db.cards.belongsToMany(db.game, {through: "gamecards"}, {foreignKey: "cardId"});
 db.gamecards.belongsTo(db.game, {foreignKey: "gameId"});
 db.gamecards.belongsTo(db.cards, {foreignKey: "cardId"});
 
-db.playercards.belongsToMany(db.gamecards, {through: "cardinhands"}, {foreignKey: "playercardId"});
-db.gamecards.belongsToMany(db.playercards, {through: "cardinhands"}, {foreignKey: "gamecardId"});
-db.cardinhand.belongsTo(db.playercards, {foreignKey: "playercardId"});
-db.cardinhand.belongsTo(db.gamecards, {foreignKey: "gamecardId"});
+
+// db.playercards.belongsTo(db.cardinhand);
+db.cardinhand.belongsTo(db.gamecards);
+// db.playercards.belongsToMany(db.gamecards, {through: "something"}, {foreignKey: "playercardId"});
+// db.gamecards.belongsToMany(db.playercards, {through: "cardinhands"}, {foreignKey: "gamecardId"});
+
+
 
 
 module.exports = db;

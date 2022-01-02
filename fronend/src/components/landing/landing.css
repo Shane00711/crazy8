@@ -22,3 +22,46 @@
   margin: 10px !important;
   padding: 10px;
 }
+.gridClass {
+  display: grid;
+  grid-template-columns: auto auto;
+  height: inherit;
+}
+.loginGame {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.registerGame {
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconclass {
+  /* position: absolute; */
+  height: 150px;
+  /* opacity: 0.5; */
+  /* top: 5px;
+  right: 10px; */
+  font-size: 8em;
+  color: rgba(245, 9, 9, 0.5);
+  pointer-events: none;
+}
+.icon {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+}
+.clubsvg {
+  background-image: url('./../../clubs.svg');
+  filter: invert(17%) sepia(63%) saturate(7129%) hue-rotate(232deg)
+    brightness(93%) contrast(97%);
+}
+.heartsvg {
+  /* background-image: url('./../../hearts.svg'); */
+  filter: invert(17%) sepia(63%) saturate(7129%) hue-rotate(232deg)
+    brightness(93%) contrast(97%);
+}

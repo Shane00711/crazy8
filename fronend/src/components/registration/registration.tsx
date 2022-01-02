@@ -1,5 +1,6 @@
 import { Button, styled, TextField, Link } from "@mui/material"
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { UserService } from "../../serivces/userService";
 import { GlassCard } from "../glasscard/glasscard";
 import hearts from "./../../heart.png";
@@ -41,6 +42,7 @@ const CssTextField = styled(TextField)({
   }
 });
 export const Registration = () => {
+    const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -58,6 +60,9 @@ export const Registration = () => {
     const register = () => {
       UserService.signup({username, password, email})
       .then(res =>{
+        if(res.status === 201){
+          history.push("/start");
+        }
           console.log(res);
       }).catch(() =>{
       });

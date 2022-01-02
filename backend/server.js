@@ -25,14 +25,14 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-db.sequelize.sync({force: true}).then(()=>{
-  console.log('Drop and Restore Db');
-  Card.bulkCreate(cards).then(()=>{
-    return Card.findAll();
-  }).then(cards => {
-    console.log("Card Deck: ",cards)
-  });
-});
+// db.sequelize.sync({force: true}).then(()=>{
+//   console.log('Drop and Restore Db');
+//   Card.bulkCreate(cards).then(()=>{
+//     return Card.findAll();
+//   }).then(cards => {
+//     console.log("Card Deck: ",cards)
+//   });
+// });
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);

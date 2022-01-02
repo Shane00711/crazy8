@@ -5,6 +5,7 @@ import club from "./../../club.png";
 import { UserService } from '../../serivces/userService';
 import { useHistory } from 'react-router';
 import { GlassCard } from '../glasscard/glasscard';
+import { useSnackbar } from 'notistack';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -46,6 +47,7 @@ const Login = () => {
     const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const {enqueueSnackbar, closeSnackbar} = useSnackbar();
     const options ={
         max: 25,
         speed: 400,
@@ -69,7 +71,8 @@ const Login = () => {
             res => {
                 if(res.status === 200) {
                     console.log(res);
-                     history.push("/start");
+                    enqueueSnackbar("Login Successful", {variant: 'success'});
+                    history.push("/start");
                 }
             }
         ).catch(() =>{})
@@ -79,7 +82,7 @@ const Login = () => {
         <div className="containers">
            <GlassCard options={options} image={<img src={club} className="iconclass" alt="heart" />} header={<h1>Login</h1>} para={ <form onSubmit={handleSubmit}>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input 1" label="Username" variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
+                    <CssTextField id="custom-css-outlined-input 1" label="Username" autoFocus={true} variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
                 </div>
                 <div className="txt">
                     <CssTextField id="custom-css-outlined-input 2" label="Password" variant="outlined" type="password" value={password} onChange={(e) =>handlePasswordChange(e)}/>
