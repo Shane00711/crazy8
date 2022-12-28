@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Snackbar, Alert } from "@mui/material";
+import { SyntheticEvent, useEffect, useState } from "react";
+import { Snackbar, Alert, SnackbarCloseReason } from "@mui/material";
 export const Popup = () => {
     const [open, setOpen] = useState(false);
     useEffect(()=>{
@@ -9,7 +9,7 @@ export const Popup = () => {
         </Alert>
       </Snackbar>
     });
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    const handleClose = (event: Event | SyntheticEvent<any, Event>, reason?: SnackbarCloseReason) => {
       if (reason === 'clickaway') {
         return;
       }

@@ -7,46 +7,12 @@ import { useHistory } from 'react-router';
 import { GlassCard } from '../glasscard/glasscard';
 import { useSnackbar } from 'notistack';
 
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: 'red',
-  },
-  '& label': {
-    color: '#ff000099',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'green',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'red',
-    },
-    '&:hover fieldset': {
-      borderColor: 'red',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'red',
-      color: 'red'
-    },
-    '& input': {
-      color: 'red'
-    },
-    '&.Mui-focused input': {
-      color: 'red'
-    },
-  },
-  'input': {
-    '&::placeholder': {
-      textOverflow: 'ellipsis !important',
-      color: 'blue'
-    }
-  }
-});
-
 const Login = () => {
     const history = useHistory();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [state, setState] = useState({
+        username: "",
+        password: ""
+    });
     const {enqueueSnackbar, closeSnackbar} = useSnackbar();
     const options ={
         max: 25,
@@ -54,25 +20,36 @@ const Login = () => {
         glare: true,
         "max-glare": 1
     };
-    function handleChange(val: any) {
-        val.preventDefault();
-        setUsername(val.target.value);
-    }
-    function handlePasswordChange(val: any) {
-        val.preventDefault();
-        setPassword(val.target.value);
-    }
+    function handleChange(event: any) {
+        const {name, value} = event.target;
+        setState(prevState => ({
+            ...prevState,
+            [name]: value
+        }));   }
+    
     function handleSubmit(val: any) {
         val.preventDefault();
         sign_in();
     }
     const sign_in = () => {
-        UserService.signin({username, password}).then(
+        const user = {
+            username: state.username,
+            password: state.password
+        }
+        // check if user data is valid
+        if (user.username === "" || user.password === "") {
+            enqueueSnackbar("Please fill in all fields", {variant: 'error'});
+            return;
+        }
+        UserService.signin(user).then(
             res => {
                 if(res.status === 200) {
                     console.log(res);
                     enqueueSnackbar("Login Successful", {variant: 'success'});
                     history.push("/start");
+                }
+                if (res.status === 401) {
+                     enqueueSnackbar("Invalid Credentials", {variant: 'error'});
                 }
             }
         ).catch(() =>{})
@@ -82,10 +59,10 @@ const Login = () => {
         <div className="containers">
            <GlassCard options={options} image={<img src={club} className="iconclass" alt="heart" />} header={<h1>Login</h1>} para={ <form onSubmit={handleSubmit}>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input 1" label="Username" autoFocus={true} variant="outlined" value={username} onChange={(e) =>handleChange(e)}/>
+                    <TextField id="outline-basic" label="Username" name="username" variant="outlined" color="info" value={state.username} onChange={handleChange} required/>
                 </div>
                 <div className="txt">
-                    <CssTextField id="custom-css-outlined-input 2" label="Password" variant="outlined" type="password" value={password} onChange={(e) =>handlePasswordChange(e)}/>
+                    <TextField id="outline-basic" label="Password" name="password" variant="outlined" type="password" value={state.password} onChange={handleChange} required/>
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button variant="contained" type="submit" value="Submit" style={{backgroundColor: "black"}}>Login</Button>
